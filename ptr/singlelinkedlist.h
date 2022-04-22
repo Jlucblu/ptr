@@ -214,7 +214,7 @@ public:
     // ¬озвращает константный итератор, указывающий на позицию, следующую за последним элементом односв€зного списка
     // –азыменовывать этот итератор нельз€ Ч попытка разыменовани€ приведЄт к неопределЄнному поведению
     [[nodiscard]] ConstIterator cend() const noexcept {
-        return ConstIterator(nullptr);
+        return end();
     }
 
     // ¬озвращает итератор, указывающий на позицию перед первым элементом односв€зного списка.
@@ -243,7 +243,7 @@ public:
 
     void PopFront() noexcept {
         assert(!IsEmpty());
-        auto const ptr = head_.next_node;
+        auto ptr = head_.next_node;
         head_.next_node = ptr->next_node;
         delete ptr;
         --size_;
@@ -325,7 +325,7 @@ bool operator<=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>&
 
 template <typename Type>
 bool operator>(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
-    return rhs < lhs;
+    return (rhs < lhs);
 }
 
 template <typename Type>
